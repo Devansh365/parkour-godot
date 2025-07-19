@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dilmkll4hcfrv"]
+
+[ext_resource type="Script" path="res://scenes/checkpoint.gd" id="1_pl0t1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6111d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iklq5"]
+material = SubResource("StandardMaterial3D_6111d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r451s"]
+
+[node name="checkpoint 1" type="Area3D"]
+script = ExtResource("1_pl0t1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_iklq5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.21006, 0, 0, 0, 1.38129, 0, 0, 0, 1.21559, 0, 0, 0)
+shape = SubResource("BoxShape3D_r451s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
