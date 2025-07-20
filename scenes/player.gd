@@ -6,7 +6,7 @@ const walkspeed = 5.0
 const sprintspeed = 7.5
 const JUMP_VELOCITY = 4.5
 var SENSITIVITY= 0.005
-
+@onready var player = $"."
 
 const bob_frequency = 2.0
 const bob_amplitute = 0.08
@@ -75,9 +75,31 @@ func _headbob(time) -> Vector3:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "player":
-		body.global_transform.origin = destination
+		die()
 
 
 func _on_checkpoint_2_body_entered(body: Node3D) -> void:
 	if body.name == "player":
 		destination = checkpoint2.global_transform.origin
+
+
+func _on_checkpoint_3_body_entered(body: Node3D) -> void:
+	if body.name == "player":
+		destination = checkpoint3.global_transform.origin
+
+
+func _on_checkpoint_4_body_entered(body: Node3D) -> void:
+	if body.name == "player":
+		destination = checkpoint4.global_transform.origin
+
+
+func _on_checkpoint_5_body_entered(body: Node3D) -> void:
+	if body.name == "player":
+		destination = checkpoint5.global_transform.origin
+func die():
+	player.global_transform.origin = destination
+
+
+func _on_checkpoint_6_body_entered(body: Node3D) -> void:
+	if body.name == "player":
+		destination = checkpoint6.global_transform.origin

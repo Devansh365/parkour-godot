@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4ayeudiwh1sr"]
+[gd_scene load_steps=20 format=3 uid="uid://c4ayeudiwh1sr"]
+
+[ext_resource type="Script" path="res://scripts/lvl_4.gd" id="1_ivrkl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0wdr"]
 metallic = 1.0
@@ -28,6 +30,72 @@ rim_tint = 0.8
 material = SubResource("StandardMaterial3D_fnqgt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgu3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g87nq"]
+
+[sub_resource type="Gradient" id="Gradient_h51cl"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nyw6o"]
+gradient = SubResource("Gradient_h51cl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2f0p"]
+albedo_color = Color(0.25098, 0.227451, 0.176471, 1)
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = SubResource("GradientTexture1D_nyw6o")
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bphld"]
+material = SubResource("StandardMaterial3D_g2f0p")
+
+[sub_resource type="Curve3D" id="Curve3D_d4001"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0365295, 0, 0.0181732, 0, 0, 0, 0, 0, 0, -0.23555, 0.0786133, -16.3744),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_3nn17"]
+resource_name = "move"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.46667, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.99, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_t3uqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpi2k"]
+_data = {
+"RESET": SubResource("Animation_t3uqy"),
+"move": SubResource("Animation_3nn17")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_d1lxq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fofp0"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -72,11 +140,20 @@ operation = 2
 size = Vector3(1, 1, 1.13586)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(5.82872, 0, 0, 0, 0.998069, 0, 0, 0, 20.374, -119.477, 0, -0.0580521)
+transform = Transform3D(5.82872, 0, 0, 0, 0.998069, 0, 0, 0, 20.374, -120.393, 0, -0.0580521)
 material = SubResource("StandardMaterial3D_u0wdr")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D13"]
 transform = Transform3D(0.698435, 0, 0, 0, 1.38018, 0, 0, 0, 0.846313, -0.0199547, 0, -0.00253109)
+operation = 2
+size = Vector3(1, 1, 1.13586)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(5.82872, 0, 0, 0, 0.998069, 0, 0, 0, 20.374, -135.898, 0, -0.0580521)
+material = SubResource("StandardMaterial3D_u0wdr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D14"]
+transform = Transform3D(0.698435, 0, 0, 0, 1.38018, 0, 0, 0, 0.846313, -0.0199566, 0, -0.00253109)
 operation = 2
 size = Vector3(1, 1, 1.13586)
 
@@ -150,22 +227,310 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15461, 0, 0)
 shape = SubResource("BoxShape3D_f250y")
 
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(12.604, 0, 0, 0, 1.185, 0, 0, 0, 20.522, -157.358, 0, -0.0580521)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152316, 0, 0)
+mesh = SubResource("BoxMesh_i30cs")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15461, 0, 0)
+shape = SubResource("BoxShape3D_f250y")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(12.604, 0, 0, 0, 1.185, 0, 0, 0, 20.522, -209.363, 0, -0.0580521)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152316, 0, 0)
+mesh = SubResource("BoxMesh_i30cs")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15461, 0, 0)
+shape = SubResource("BoxShape3D_f250y")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+transform = Transform3D(12.604, 0, 0, 0, 1.185, 0, 0, 0, 20.522, -265.819, 0, -0.0580521)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152316, 0, 0)
+mesh = SubResource("BoxMesh_i30cs")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15461, 0, 0)
+shape = SubResource("BoxShape3D_f250y")
+
 [node name="lvl3" type="Node3D" parent="."]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="lvl3"]
-transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -112.521, 0, 0)
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -112.521, 0, -0.0686965)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D"]
 mesh = SubResource("BoxMesh_ojhok")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl3/StaticBody3D"]
-shape = SubResource("BoxShape3D_xvgu3")
+[node name="StaticBody3D3" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -112.521, 0, 6.78404)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="lvl3"]
-transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -6.67366, 0, 13.6377)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D3"]
 mesh = SubResource("BoxMesh_ojhok")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl3/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl3/StaticBody3D3"]
 shape = SubResource("BoxShape3D_xvgu3")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -112.521, 0, -6.84883)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D4"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -128.203, 0, -0.0686965)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D5"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl3/StaticBody3D5"]
+shape = SubResource("BoxShape3D_xvgu3")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -128.203, 0, 6.78404)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D6"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -128.203, 0, -6.84883)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D7"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -143.919, 0, -0.0686965)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D8"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -143.919, 0, 6.78404)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D9"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl3/StaticBody3D9"]
+shape = SubResource("BoxShape3D_xvgu3")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="lvl3"]
+transform = Transform3D(6.81069, 0, 0, 0, 1, 0, 0, 0, 4.5254, -143.919, 0, -6.84883)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl3/StaticBody3D10"]
+mesh = SubResource("BoxMesh_ojhok")
+
+[node name="lvl4" type="Node3D" parent="."]
+script = ExtResource("1_ivrkl")
+
+[node name="moving platform" type="Node3D" parent="lvl4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -166.071, 0, 7.95833)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform"]
+transform = Transform3D(6.39889, -0.000286952, 0.054626, 0.00220928, 0.999827, -0.0215773, -0.0776778, 0.00479833, 4.49934, -0.220123, 0.0725225, -15.1043)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform/AnimatableBody3D"]
+shape = SubResource("BoxShape3D_g87nq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl4/moving platform/AnimatableBody3D"]
+mesh = SubResource("BoxMesh_bphld")
+
+[node name="Path3D" type="Path3D" parent="lvl4/moving platform"]
+curve = SubResource("Curve3D_d4001")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform/Path3D"]
+transform = Transform3D(0.999827, -0.000286952, 0.0121391, 0.0003452, 0.999827, -0.00479497, -0.0121372, 0.00479833, 0.999853, -0.22013, 0.0725225, -15.1043)
+progress = 15.1235
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform/Path3D/PathFollow3D"]
+transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lvl4/moving platform"]
+libraries = {
+"": SubResource("AnimationLibrary_lpi2k")
+}
+
+[node name="moving platform2" type="Node3D" parent="lvl4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.5, 0, 7.95833)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform2"]
+transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform2/AnimatableBody3D"]
+shape = SubResource("BoxShape3D_g87nq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl4/moving platform2/AnimatableBody3D"]
+mesh = SubResource("BoxMesh_bphld")
+
+[node name="Path3D" type="Path3D" parent="lvl4/moving platform2"]
+curve = SubResource("Curve3D_d4001")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform2/Path3D"]
+transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform2/Path3D/PathFollow3D"]
+transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lvl4/moving platform2"]
+libraries = {
+"": SubResource("AnimationLibrary_lpi2k")
+}
+
+[node name="moving platform3" type="Node3D" parent="lvl4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -181.212, 0, 7.95833)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform3"]
+transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform3/AnimatableBody3D"]
+shape = SubResource("BoxShape3D_g87nq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl4/moving platform3/AnimatableBody3D"]
+mesh = SubResource("BoxMesh_bphld")
+
+[node name="Path3D" type="Path3D" parent="lvl4/moving platform3"]
+curve = SubResource("Curve3D_d4001")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform3/Path3D"]
+transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform3/Path3D/PathFollow3D"]
+transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lvl4/moving platform3"]
+libraries = {
+"": SubResource("AnimationLibrary_lpi2k")
+}
+
+[node name="moving platform4" type="Node3D" parent="lvl4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -188.467, 0, 7.95833)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform4"]
+transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform4/AnimatableBody3D"]
+shape = SubResource("BoxShape3D_g87nq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl4/moving platform4/AnimatableBody3D"]
+mesh = SubResource("BoxMesh_bphld")
+
+[node name="Path3D" type="Path3D" parent="lvl4/moving platform4"]
+curve = SubResource("Curve3D_d4001")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform4/Path3D"]
+transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform4/Path3D/PathFollow3D"]
+transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lvl4/moving platform4"]
+libraries = {
+"": SubResource("AnimationLibrary_lpi2k")
+}
+
+[node name="moving platform5" type="Node3D" parent="lvl4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.559, 0, 7.95833)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform5"]
+transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform5/AnimatableBody3D"]
+shape = SubResource("BoxShape3D_g87nq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lvl4/moving platform5/AnimatableBody3D"]
+mesh = SubResource("BoxMesh_bphld")
+
+[node name="Path3D" type="Path3D" parent="lvl4/moving platform5"]
+curve = SubResource("Curve3D_d4001")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform5/Path3D"]
+transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform5/Path3D/PathFollow3D"]
+transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lvl4/moving platform5"]
+libraries = {
+"": SubResource("AnimationLibrary_lpi2k")
+}
+
+[node name="lvl5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -218.943, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="lvl5"]
+transform = Transform3D(1.665, 0, 0, 0, 1.58951, 0.495656, 0, -0.495656, 1.58951, -2.49907, -0.756152, 6.43747)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D"]
+transform = Transform3D(4.97358, 0, 0, 0, 1, 0, 0, 0, 8.59468, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_d1lxq")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D/CSGMesh3D"]
+transform = Transform3D(0.860106, 0, -1.06663, 0, 1, 0, 1.63127, 0, 0.562393, -0.432278, 0, 0.0545787)
+operation = 2
+mesh = SubResource("BoxMesh_fofp0")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="lvl5"]
+transform = Transform3D(0.93214, -0.383351, -1.32529, 0, 1.59943, -0.46265, 1.37962, 0.259012, 0.895432, -4.24831, -0.756152, -9.95621)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D2"]
+transform = Transform3D(4.92634, -0.133731, 0.275048, 0.647384, 0.986898, 0.819427, -0.220492, -0.09027, 8.55111, -0.315186, 0.772738, 0.262093)
+use_collision = true
+mesh = SubResource("BoxMesh_d1lxq")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D2/CSGMesh3D"]
+transform = Transform3D(0.860106, 0, -1.06663, 0, 1, 0, 1.63127, 0, 0.562393, -0.432278, 0, 0.0545787)
+operation = 2
+mesh = SubResource("BoxMesh_fofp0")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="lvl5"]
+transform = Transform3D(0.329939, -0.131447, 1.62668, 0.629484, 1.54142, -0.00312103, -1.50569, 0.615615, 0.355145, -11.3423, -2.8359, 4.71624)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D3"]
+transform = Transform3D(4.97358, 0, 0, 0, 1, 0, 0, 0, 8.59468, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_d1lxq")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D3/CSGMesh3D"]
+transform = Transform3D(0.860106, 0, -1.06663, 0, 1, 0, 1.63127, 0, 0.562393, -0.432278, 0, 0.0545787)
+operation = 2
+mesh = SubResource("BoxMesh_fofp0")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="lvl5"]
+transform = Transform3D(1.34098, -0.549289, -0.81993, 0.629484, 1.54142, -0.00312102, 0.760102, -0.307476, 1.44911, -35.0822, -2.8359, -5.52803)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D5"]
+transform = Transform3D(4.97358, 0, 0, 0, 1, 0, 0, 0, 8.59468, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_d1lxq")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D5/CSGMesh3D"]
+transform = Transform3D(0.860106, 0, -1.06663, 0, 1, 0, 1.63127, 0, 0.562393, -0.432278, 0, 0.0545787)
+operation = 2
+mesh = SubResource("BoxMesh_fofp0")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="lvl5"]
+transform = Transform3D(0.421487, -0.804057, 1.39573, 1.14905, 1.16115, 0.321924, -1.12883, 0.881731, 0.848836, -18.6184, -2.8359, -5.47533)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D4"]
+transform = Transform3D(4.97358, 0, 0, 0, 1, 0, 0, 0, 8.59468, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_d1lxq")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="lvl5/StaticBody3D4/CSGMesh3D"]
+transform = Transform3D(0.860106, 0, -1.06663, 0, 1, 0, 1.63127, 0, 0.562393, -0.432278, 0, 0.0545787)
+operation = 2
+mesh = SubResource("BoxMesh_fofp0")
