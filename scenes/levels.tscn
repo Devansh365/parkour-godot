@@ -55,6 +55,21 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_t3uqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_3nn17"]
 resource_name = "move"
 length = 5.0
@@ -70,21 +85,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.99, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_t3uqy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lpi2k"]
@@ -335,7 +335,7 @@ script = ExtResource("1_ivrkl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -166.071, 0, 7.95833)
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform"]
-transform = Transform3D(6.39889, -0.000286952, 0.054626, 0.00220928, 0.999827, -0.0215773, -0.0776778, 0.00479833, 4.49934, -0.220123, 0.0725225, -15.1043)
+transform = Transform3D(6.39889, 5.63749e-05, 0.054626, 1.1714e-05, 0.999827, -0.0215773, -0.0776882, 0.00479415, 4.49934, -0.220123, 0.0725223, -15.1043)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform/AnimatableBody3D"]
 shape = SubResource("BoxShape3D_g87nq")
@@ -347,7 +347,7 @@ mesh = SubResource("BoxMesh_bphld")
 curve = SubResource("Curve3D_d4001")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform/Path3D"]
-transform = Transform3D(0.999827, -0.000286952, 0.0121391, 0.0003452, 0.999827, -0.00479497, -0.0121372, 0.00479833, 0.999853, -0.22013, 0.0725225, -15.1043)
+transform = Transform3D(0.999827, 5.63749e-05, 0.0121391, 1.83032e-06, 0.999827, -0.00479496, -0.0121388, 0.00479415, 0.999853, -0.22013, 0.0725223, -15.1043)
 progress = 15.1235
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform/Path3D/PathFollow3D"]
@@ -363,7 +363,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.5, 0, 7.95833)
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform2"]
-transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+transform = Transform3D(6.39909, 5.8205e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776907, 0.00479413, 4.49934, -0.0365295, 0, 0.0181732)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform2/AnimatableBody3D"]
 shape = SubResource("BoxShape3D_g87nq")
@@ -375,7 +375,7 @@ mesh = SubResource("BoxMesh_bphld")
 curve = SubResource("Curve3D_d4001")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform2/Path3D"]
-transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+transform = Transform3D(0.999858, 5.8205e-05, 0.0121391, -1.81887e-12, 0.999827, -0.00479496, -0.0121392, 0.00479413, 0.999853, -0.0365295, 0, 0.0181732)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform2/Path3D/PathFollow3D"]
 transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
@@ -390,7 +390,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -181.212, 0, 7.95833)
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform3"]
-transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+transform = Transform3D(6.39909, 5.8205e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776907, 0.00479413, 4.49934, -0.0365295, 0, 0.0181732)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform3/AnimatableBody3D"]
 shape = SubResource("BoxShape3D_g87nq")
@@ -402,7 +402,7 @@ mesh = SubResource("BoxMesh_bphld")
 curve = SubResource("Curve3D_d4001")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform3/Path3D"]
-transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+transform = Transform3D(0.999858, 5.8205e-05, 0.0121391, -1.81887e-12, 0.999827, -0.00479496, -0.0121392, 0.00479413, 0.999853, -0.0365295, 0, 0.0181732)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform3/Path3D/PathFollow3D"]
 transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
@@ -417,7 +417,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -188.467, 0, 7.95833)
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform4"]
-transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+transform = Transform3D(6.39909, 5.8205e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776907, 0.00479413, 4.49934, -0.0365295, 0, 0.0181732)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform4/AnimatableBody3D"]
 shape = SubResource("BoxShape3D_g87nq")
@@ -429,7 +429,7 @@ mesh = SubResource("BoxMesh_bphld")
 curve = SubResource("Curve3D_d4001")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform4/Path3D"]
-transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+transform = Transform3D(0.999858, 5.8205e-05, 0.0121391, -1.81887e-12, 0.999827, -0.00479496, -0.0121392, 0.00479413, 0.999853, -0.0365295, 0, 0.0181732)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform4/Path3D/PathFollow3D"]
 transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)
@@ -444,7 +444,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.559, 0, 7.95833)
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="lvl4/moving platform5"]
-transform = Transform3D(6.39909, 5.82052e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776908, 0.00479414, 4.49934, -0.0365295, 0, 0.0181732)
+transform = Transform3D(6.39909, 5.8205e-05, 0.054626, -1.16407e-11, 0.999827, -0.0215773, -0.0776907, 0.00479413, 4.49934, -0.0365295, 0, 0.0181732)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lvl4/moving platform5/AnimatableBody3D"]
 shape = SubResource("BoxShape3D_g87nq")
@@ -456,7 +456,7 @@ mesh = SubResource("BoxMesh_bphld")
 curve = SubResource("Curve3D_d4001")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="lvl4/moving platform5/Path3D"]
-transform = Transform3D(0.999858, 5.82052e-05, 0.0121391, -1.81886e-12, 0.999827, -0.00479497, -0.0121392, 0.00479414, 0.999853, -0.0365295, 0, 0.0181732)
+transform = Transform3D(0.999858, 5.8205e-05, 0.0121391, -1.81887e-12, 0.999827, -0.00479496, -0.0121392, 0.00479413, 0.999853, -0.0365295, 0, 0.0181732)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="lvl4/moving platform5/Path3D/PathFollow3D"]
 transform = Transform3D(6.4, 0, 0, 0, 1, 0, 0, 0, 4.5, 0, 0, 0)

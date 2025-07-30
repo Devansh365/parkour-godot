@@ -1,14 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2wbnn8ga0dec"]
+[gd_scene load_steps=22 format=3 uid="uid://d2wbnn8ga0dec"]
 
 [ext_resource type="PackedScene" uid="uid://bjpiqxujkng2b" path="res://scenes/player.tscn" id="1_r7f8b"]
 [ext_resource type="Texture2D" uid="uid://dutw0ei3lxqu5" path="res://assets/qwantani_dusk_2_puresky_2k.hdr" id="1_tpf8o"]
 [ext_resource type="PackedScene" uid="uid://c4ayeudiwh1sr" path="res://scenes/levels.tscn" id="3_x7smm"]
 [ext_resource type="PackedScene" uid="uid://dilmkll4hcfrv" path="res://scenes/checkpoint.tscn" id="4_75mfn"]
 [ext_resource type="Script" path="res://scripts/checkpoints/checkpoint_2.gd" id="4_wgyr5"]
+[ext_resource type="Material" uid="uid://blnnv3rdebut6" path="res://water.tres" id="6_kfegi"]
+[ext_resource type="AudioStream" uid="uid://8y4qhy2be7dj" path="res://assets/rain-110508.mp3" id="7_r7mel"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ikhol"]
 panorama = ExtResource("1_tpf8o")
-energy_multiplier = 0.05
+energy_multiplier = 0.1
 
 [sub_resource type="Sky" id="Sky_nsdfn"]
 sky_material = SubResource("PanoramaSkyMaterial_ikhol")
@@ -17,12 +19,13 @@ sky_material = SubResource("PanoramaSkyMaterial_ikhol")
 background_mode = 2
 sky = SubResource("Sky_nsdfn")
 sky_rotation = Vector3(0, -1.05592, 0)
-tonemap_mode = 2
+tonemap_mode = 3
+tonemap_exposure = 0.55
+tonemap_white = 6.9
+sdfgi_use_occlusion = true
 glow_enabled = true
-fog_light_energy = 0.0
-volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(1, 0.101961, 0.254902, 1)
-volumetric_fog_emission = Color(0.509804, 0.0588235, 0.0941176, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.025
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5n60"]
 albedo_color = Color(0, 0.247656, 0.247696, 1)
@@ -47,6 +50,16 @@ roughness = 0.0
 material = SubResource("StandardMaterial3D_fol6h")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gj5tr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hdshg"]
+material = ExtResource("6_kfegi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wjvk"]
+albedo_color = Color(0.0745098, 0.2, 0.211765, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_cnbak"]
+material = SubResource("StandardMaterial3D_7wjvk")
 
 [node name="Node3D" type="Node3D"]
 
@@ -77,6 +90,10 @@ checkpoint3 = NodePath("../checkpoints/checkpoint3")
 checkpoint4 = NodePath("../checkpoints/checkpoint4")
 checkpoint5 = NodePath("../checkpoints/checkpoint5")
 checkpoint6 = NodePath("../checkpoints/checkpoint6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("7_r7mel")
+autoplay = true
 
 [node name="Node3D" parent="." instance=ExtResource("3_x7smm")]
 
@@ -144,6 +161,82 @@ shape = SubResource("BoxShape3D_gj5tr")
 
 [node name="checkpoint 1" parent="checkpoints" instance=ExtResource("4_75mfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45893, 1.42245, -0.0448508)
+
+[node name="ocean" type="MeshInstance3D" parent="."]
+transform = Transform3D(10000, 0, 0, 0, 1, 0, 0, 0, 10000, 0, -5.33899, -11.8262)
+mesh = SubResource("BoxMesh_hdshg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 100, 0, 0, 0, 7942.84, -2255.4, 0, 0)
+mesh = SubResource("BoxMesh_cnbak")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 100, 0, 0, 0, 7942.84, 3153.81, 0, 0)
+mesh = SubResource("BoxMesh_cnbak")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 7942.84, 0, 100, 0, -1, 0, -0.000347193, -676.248, 0, 2510.17)
+mesh = SubResource("BoxMesh_cnbak")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 7942.84, 0, 100, 0, -1, 0, -0.000347193, -676.248, 0, -2658.79)
+mesh = SubResource("BoxMesh_cnbak")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90484, 5.95383, -16.6363)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90484, -1.29752, 17.6079)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.351, -1.29752, 17.6079)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.351, -1.29752, -12.6316)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.133, -1.34087, 0.440897)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.4998, 9.35229, 0.440897)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34001, 28.6844, 0.440897)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.7697, 3.87826, -27.2433)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.79, 3.87826, -27.2433)
+stream = ExtResource("7_r7mel")
+volume_db = 13.505
+autoplay = true
 
 [connection signal="body_entered" from="Area3D" to="player" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint2" to="player" method="_on_checkpoint_2_body_entered"]

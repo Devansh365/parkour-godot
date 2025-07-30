@@ -1,0 +1,73 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://blnnv3rdebut6"]
+
+[sub_resource type="Shader" id="Shader_g4tq7"]
+code = "shader_type spatial;
+
+uniform vec4 primary_color : source_color;
+uniform float roughness = 0.2;
+uniform sampler2D normalmap_a : hint_normal;
+uniform sampler2D normalmap_b : hint_normal;
+uniform float normalmap_a_strength = 0.3;
+uniform float normalmap_b_strength = 0.4;
+uniform vec2 movement_direction = vec2(0.1, 0.1);
+uniform float movement_strength = 0.2;
+uniform float uv_scale = 1.0;
+
+float fresnel(float amount, vec3 normal, vec3 view)
+{
+    return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
+}
+
+
+
+void fragment() {
+	float basic_fresnel = fresnel(3.0, NORMAL, VIEW);
+
+	vec2 uv = UV * uv_scale;
+	vec2 uv_movement = movement_direction * TIME * movement_strength;
+
+	ALBEDO = primary_color.rgb + (0.2 * basic_fresnel);
+	ROUGHNESS = roughness * (1.0 - basic_fresnel);
+
+	vec3 normalmap = texture(normalmap_a, uv + uv_movement).rgb * normalmap_a_strength;
+    normalmap += texture(normalmap_b, uv - uv_movement).rgb * normalmap_b_strength;
+
+    ALBEDO = primary_color.rgb;
+    ROUGHNESS = roughness;
+    NORMAL_MAP = normalmap;
+}
+
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_exsvn"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ixdb"]
+width = 1024
+height = 1024
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_exsvn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j2tvq"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s1obe"]
+width = 1024
+height = 1024
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_j2tvq")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_g4tq7")
+shader_parameter/primary_color = Color(0, 0.349011, 0.327663, 1)
+shader_parameter/roughness = 0.1
+shader_parameter/normalmap_a_strength = 0.99
+shader_parameter/normalmap_b_strength = 0.4
+shader_parameter/movement_direction = Vector2(0.1, 0.1)
+shader_parameter/movement_strength = 0.1
+shader_parameter/uv_scale = 200.0
+shader_parameter/normalmap_a = SubResource("NoiseTexture2D_0ixdb")
+shader_parameter/normalmap_b = SubResource("NoiseTexture2D_s1obe")
