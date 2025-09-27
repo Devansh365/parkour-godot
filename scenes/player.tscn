@@ -18,12 +18,12 @@ initial_velocity_max = 15.0
 scale_min = 0.1
 scale_max = 0.4
 
-[sub_resource type="Curve" id="Curve_eat3p"]
+[sub_resource type="Curve" id="Curve_k71wo"]
 max_value = 0.1
 _data = [Vector2(0.0397351, 0.0982713), 0.0, 0.0, 0, 0, Vector2(0.211921, 0.0204787), -0.176832, -0.176832, 0, 0, Vector2(0.990066, 0.00578459), -0.0248607, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrvfj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gc7s0"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -33,14 +33,16 @@ albedo_texture = ExtResource("3_tad28")
 use_particle_trails = true
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_xk8gj"]
-material = SubResource("StandardMaterial3D_jrvfj")
+material = SubResource("StandardMaterial3D_gc7s0")
 custom_aabb = AABB(-10, 20, -10, 20, 20, 20)
-curve = SubResource("Curve_eat3p")
+curve = SubResource("Curve_k71wo")
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021019, 0.0453472, 0.00418758)
 script = ExtResource("1_pi0gd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_ndjgv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

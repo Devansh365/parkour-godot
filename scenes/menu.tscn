@@ -1,7 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsh6apbiq7s0y"]
+[gd_scene load_steps=20 format=3 uid="uid://bsh6apbiq7s0y"]
 
 [ext_resource type="Texture2D" uid="uid://dutw0ei3lxqu5" path="res://assets/qwantani_dusk_2_puresky_2k.hdr" id="1_3oxin"]
+[ext_resource type="Texture2D" uid="uid://bx7xsmtxhvkfx" path="res://assets/play button.png" id="1_hsts1"]
+[ext_resource type="Texture2D" uid="uid://hgm8s06iq42l" path="res://assets/quit.png" id="2_ajvq2"]
 [ext_resource type="Material" uid="uid://blnnv3rdebut6" path="res://water.tres" id="2_jnmf1"]
+[ext_resource type="Script" path="res://scripts/playbutton.gd" id="2_lgfmh"]
+[ext_resource type="Texture2D" uid="uid://djkr6noqqrvun" path="res://assets/Circle.png" id="3_5051p"]
+[ext_resource type="Script" path="res://scripts/quit button.gd" id="4_bgp12"]
+[ext_resource type="AudioStream" uid="uid://8y4qhy2be7dj" path="res://assets/rain-110508.mp3" id="4_puy16"]
+[ext_resource type="Texture2D" uid="uid://ct1bq3ml5tal5" path="res://assets/logo.png" id="5_buhlc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a154h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjlk7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kdb4"]
 panorama = ExtResource("1_3oxin")
@@ -21,7 +32,102 @@ fog_light_color = Color(0.000751192, 0.0638197, 0.0795265, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_x7bir"]
 material = ExtResource("2_jnmf1")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ocwd"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 0.5, 10)
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+scale_min = 0.1
+scale_max = 0.4
+
+[sub_resource type="Curve" id="Curve_eat3p"]
+max_value = 0.1
+_data = [Vector2(0.0397351, 0.0982713), 0.0, 0.0, 0, 0, Vector2(0.211921, 0.0204787), -0.176832, -0.176832, 0, 0, Vector2(0.990066, 0.00578459), -0.0248607, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrvfj"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.337255, 0.435294, 0.627451)
+albedo_texture = ExtResource("3_5051p")
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_2ff72"]
+material = SubResource("StandardMaterial3D_jrvfj")
+custom_aabb = AABB(-10, 20, -10, 20, 20, 20)
+curve = SubResource("Curve_eat3p")
+
 [node name="Node3D" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -479.035
+offset_top = -202.685
+offset_right = -124.035
+offset_bottom = -158.685
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.695, 2.695)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_buhlc")
+metadata/_edit_use_anchors_ = true
+
+[node name="play" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = 126.0
+offset_right = 17.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a154h")
+icon = ExtResource("1_hsts1")
+script = ExtResource("2_lgfmh")
+
+[node name="quit" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = 125.0
+offset_right = 271.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tjlk7")
+icon = ExtResource("2_ajvq2")
+script = ExtResource("4_bgp12")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -31,8 +137,26 @@ shadow_enabled = true
 environment = SubResource("Environment_slnra")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.961262, -0.275637, 0, 0.275637, -0.961262, 0, 0, 0, 1, 0, 1.32474, 0)
+transform = Transform3D(0.848048, 0, -0.529919, 0, 1, 0, 0.529919, 0, 0.848048, 0.725, 3.98, 5.71)
 
 [node name="ocean" type="MeshInstance3D" parent="."]
-transform = Transform3D(10000, 0, 0, 0, 1, 0, 0, 0, 10000, 0, -3.279, -11.826)
+transform = Transform3D(7000, 0, 0, 0, 1, 0, 0, 0, 7000, 0, -3.279, -11.826)
 mesh = SubResource("BoxMesh_x7bir")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.78891, 0, 0, 0, 9.72893, 0, 0, 0, 1.49678, 0, 32.3821, 0)
+amount = 10000
+speed_scale = 0.3
+randomness = 0.75
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_8ocwd")
+draw_pass_1 = SubResource("RibbonTrailMesh_2ff72")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.57506, 3.46288)
+stream = ExtResource("4_puy16")
+autoplay = true
+
+[connection signal="pressed" from="Control/play" to="Control/play" method="_on_pressed"]
+[connection signal="pressed" from="Control/quit" to="Control/quit" method="_on_pressed"]

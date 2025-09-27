@@ -1,12 +1,24 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2wbnn8ga0dec"]
+[gd_scene load_steps=61 format=3 uid="uid://d2wbnn8ga0dec"]
 
 [ext_resource type="PackedScene" uid="uid://bjpiqxujkng2b" path="res://scenes/player.tscn" id="1_r7f8b"]
 [ext_resource type="Texture2D" uid="uid://dutw0ei3lxqu5" path="res://assets/qwantani_dusk_2_puresky_2k.hdr" id="1_tpf8o"]
 [ext_resource type="PackedScene" uid="uid://c4ayeudiwh1sr" path="res://scenes/levels.tscn" id="3_x7smm"]
 [ext_resource type="PackedScene" uid="uid://dilmkll4hcfrv" path="res://scenes/checkpoint.tscn" id="4_75mfn"]
 [ext_resource type="Script" path="res://scripts/checkpoints/checkpoint_2.gd" id="4_wgyr5"]
+[ext_resource type="Script" path="res://scripts/main meny.gd" id="6_2arlv"]
 [ext_resource type="Material" uid="uid://blnnv3rdebut6" path="res://water.tres" id="6_kfegi"]
 [ext_resource type="AudioStream" uid="uid://8y4qhy2be7dj" path="res://assets/rain-110508.mp3" id="7_r7mel"]
+[ext_resource type="Script" path="res://scripts/endcurtscene.gd" id="7_xi2x1"]
+[ext_resource type="Texture2D" uid="uid://bjl1xqqeykr8s" path="res://assets/Jump in the ocean to quit/1.png" id="9_7k7uw"]
+[ext_resource type="Texture2D" uid="uid://b6slsnfr3fsif" path="res://assets/Jump in the ocean to quit/2.png" id="10_kk2na"]
+[ext_resource type="Texture2D" uid="uid://0duslqjiw406" path="res://assets/Jump in the ocean to quit/3.png" id="11_kdcch"]
+[ext_resource type="Texture2D" uid="uid://ck1lyrs8myu68" path="res://assets/Jump in the ocean to quit/4.png" id="12_jqbhv"]
+[ext_resource type="Texture2D" uid="uid://dq6osef6lgtf1" path="res://assets/Jump in the ocean to quit/5.png" id="13_clv1x"]
+[ext_resource type="Texture2D" uid="uid://0l4le2ayrf41" path="res://assets/Jump in the ocean to quit/6.png" id="14_pmowh"]
+[ext_resource type="Texture2D" uid="uid://cnkvlb4w3qyea" path="res://assets/Jump in the ocean to quit/7.png" id="15_evxo6"]
+[ext_resource type="Texture2D" uid="uid://crhp3g5egmq2o" path="res://assets/Jump in the ocean to quit/8.png" id="16_jbrxf"]
+[ext_resource type="Texture2D" uid="uid://ybcij0mr8q1f" path="res://assets/Jump in the ocean to quit/9.png" id="17_ojt08"]
+[ext_resource type="Texture2D" uid="uid://djkr6noqqrvun" path="res://assets/Circle.png" id="18_3vssl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ikhol"]
 panorama = ExtResource("1_tpf8o")
@@ -61,13 +73,187 @@ roughness = 0.0
 [sub_resource type="BoxMesh" id="BoxMesh_cnbak"]
 material = SubResource("StandardMaterial3D_7wjvk")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc0ms"]
+albedo_texture = ExtResource("9_7k7uw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_osq2a"]
+material = SubResource("StandardMaterial3D_wc0ms")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bulk5"]
+albedo_texture = ExtResource("10_kk2na")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6xbwq"]
+material = SubResource("StandardMaterial3D_bulk5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2y2i"]
+albedo_texture = ExtResource("11_kdcch")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tsfku"]
+material = SubResource("StandardMaterial3D_c2y2i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oifdq"]
+albedo_texture = ExtResource("12_jqbhv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o1n2l"]
+material = SubResource("StandardMaterial3D_oifdq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxrxy"]
+albedo_texture = ExtResource("11_kdcch")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_awmu6"]
+material = SubResource("StandardMaterial3D_lxrxy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xmwg"]
+albedo_texture = ExtResource("13_clv1x")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hbnge"]
+material = SubResource("StandardMaterial3D_5xmwg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lue4"]
+albedo_texture = ExtResource("14_pmowh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x41ax"]
+material = SubResource("StandardMaterial3D_4lue4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bufix"]
+albedo_texture = ExtResource("15_evxo6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gyvwt"]
+material = SubResource("StandardMaterial3D_bufix")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q16cm"]
+albedo_texture = ExtResource("16_jbrxf")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iocyy"]
+material = SubResource("StandardMaterial3D_q16cm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vh8n"]
+albedo_texture = ExtResource("17_ojt08")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_04wlk"]
+material = SubResource("StandardMaterial3D_0vh8n")
+
+[sub_resource type="Animation" id="Animation_hkhtt"]
+resource_name = "end"
+length = 50.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 8.06667, 8.43333, 14.8333, 15.9, 19.9667, 21.6667, 26.1667, 46.8667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-518.719, 2.327, -29.266), Vector3(-474.899, 45.152, -28.146), Vector3(-1045.9, 45.152, -28.146), Vector3(-1045.9, 1.242, -28.146), Vector3(-503.249, -3.713, -28.146), Vector3(-503.939, 7.497, -28.146), Vector3(-493.194, 3.582, 0.134), Vector3(-333.019, 3.582, 0.134), Vector3(-4.364, 3.352, 0.134), Vector3(-518.719, 2.327, -29.266)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.03333, 8.43333, 15.0333, 20.2, 26.1667, 46.8667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.235619, 1.27409, 0.00872665), Vector3(-0.462512, 1.37008, 0.00872665), Vector3(0, -1.74533, 0), Vector3(0, -1.74533, 0), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(-0.235619, 1.27409, 0.00872665)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [25.025, 3.1]
+}
+
+[sub_resource type="Animation" id="Animation_vqlua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-518.719, 2.327, -29.266)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.235619, 1.27409, 0.00872665)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [25.025]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ld1a7"]
+_data = {
+"RESET": SubResource("Animation_vqlua"),
+"end": SubResource("Animation_hkhtt")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xtah7"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 0.5, 10)
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+scale_min = 0.1
+scale_max = 0.4
+
+[sub_resource type="Curve" id="Curve_7lisn"]
+max_value = 0.1
+_data = [Vector2(0.0397351, 0.0982713), 0.0, 0.0, 0, 0, Vector2(0.211921, 0.0204787), -0.176832, -0.176832, 0, 0, Vector2(0.990066, 0.00578459), -0.0248607, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3uu0"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.337255, 0.435294, 0.627451)
+albedo_texture = ExtResource("18_3vssl")
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_bhqqr"]
+material = SubResource("StandardMaterial3D_f3uu0")
+custom_aabb = AABB(-10, 20, -10, 20, 20, 20)
+curve = SubResource("Curve_7lisn")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sn0tv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(0.243474, 0.354997, 0.902606, 0.329581, -0.905517, 0.267238, 0.912193, 0.232416, -0.33747, 0, 0, 0)
 shadow_enabled = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -82,7 +268,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_74jst")
 
 [node name="player" parent="." node_paths=PackedStringArray("checkpoint1", "checkpoint2", "checkpoint3", "checkpoint4", "checkpoint5", "checkpoint6") instance=ExtResource("1_r7f8b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62123, 5.06922, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -486.868, 4.49292, -3.99854)
 wall_min_slide_angle = 0.785398
 checkpoint1 = NodePath("../checkpoints/checkpoint 1")
 checkpoint2 = NodePath("../checkpoints/checkpoint2")
@@ -98,7 +284,7 @@ autoplay = true
 [node name="Node3D" parent="." instance=ExtResource("3_x7smm")]
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(413.641, 0, 0, 0, 1, 0, 0, 0, 96.6529, -159.102, -6.66371, 22.612)
+transform = Transform3D(1388.9, 0, 0, 0, 1, 0, 0, 0, 213.901, -159.102, -6.66371, 22.612)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_gxapy")
@@ -157,6 +343,28 @@ script = ExtResource("4_wgyr5")
 mesh = SubResource("BoxMesh_kxwpr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint6"]
+shape = SubResource("BoxShape3D_gj5tr")
+
+[node name="checkpoint7" type="Area3D" parent="checkpoints"]
+transform = Transform3D(-1.31816, 0, -30.0462, 0, 1.64085, 0, 39.2189, 0, -1.00986, -299.139, -2.52943, -51.6403)
+script = ExtResource("6_2arlv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="checkpoints/checkpoint7"]
+visible = false
+mesh = SubResource("BoxMesh_kxwpr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint7"]
+shape = SubResource("BoxShape3D_gj5tr")
+
+[node name="checkpoint8" type="Area3D" parent="checkpoints"]
+transform = Transform3D(-1.32888, 0, -37.3186, 0, 1.64085, 0, 39.538, 0, -1.25429, -517.229, -2.52943, -29.7797)
+script = ExtResource("7_xi2x1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="checkpoints/checkpoint8"]
+visible = false
+mesh = SubResource("BoxMesh_kxwpr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint8"]
 shape = SubResource("BoxShape3D_gj5tr")
 
 [node name="checkpoint 1" parent="checkpoints" instance=ExtResource("4_75mfn")]
@@ -226,6 +434,60 @@ stream = ExtResource("7_r7mel")
 volume_db = 14.425
 autoplay = true
 
+[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -330.716, 28.6844, 0.440897)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D11" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -478.76, 28.6844, 0.440897)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D12" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -510.275, 7.98686, -55.1021)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D13" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -510.275, 6.80659, -43.5044)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D14" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -503.548, 6.80659, -43.5044)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D15" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -509.234, 6.80659, -36.6421)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D16" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -509.234, 6.80659, -48.5792)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D17" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -504.523, 6.80659, -48.5792)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
+[node name="AudioStreamPlayer3D18" type="AudioStreamPlayer3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -505.283, 3.82629, -41.5912)
+stream = ExtResource("7_r7mel")
+volume_db = 14.425
+autoplay = true
+
 [node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.7697, 3.87826, -27.2433)
 stream = ExtResource("7_r7mel")
@@ -238,9 +500,95 @@ stream = ExtResource("7_r7mel")
 volume_db = 13.505
 autoplay = true
 
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(0.971773, 0.231142, -0.0472284, -0.0583978, 0.0417181, -0.997421, -0.228576, 0.972025, 0.0540387, -305.761, 2.70082, -11.5906)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.883096, 0.460964, -0.0874908, -0.463941, 0.830075, -0.309408, -0.070002, 0.313828, 0.946897, 1.0321, -1.62374, -0.128344)
+mesh = SubResource("PlaneMesh_osq2a")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.883097, 0.460964, -0.0874908, -0.463941, 0.830075, -0.309408, -0.070002, 0.313828, 0.946898, -208.947, -86.479, 8.61654)
+mesh = SubResource("PlaneMesh_osq2a")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(-0.412601, 0.590954, -0.153229, -0.681969, -0.358396, 0.0889852, -0.00348435, 0.168137, 0.728237, -19.3554, 17.306, 2.54915)
+mesh = SubResource("PlaneMesh_6xbwq")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.527592, 0.51874, -0.129858, -0.594952, 0.44102, -0.181176, -0.0548919, 0.205801, 0.715569, -40.946, -8.90054, 2.71714)
+mesh = SubResource("PlaneMesh_tsfku")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(-0.423766, 0.585096, -0.151238, -0.675093, -0.367907, 0.0921911, -0.00254306, 0.168082, 0.728255, -80.1294, 5.1684, 5.59974)
+mesh = SubResource("PlaneMesh_o1n2l")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.547205, 0.503471, -0.124721, -0.576928, 0.457658, -0.186816, -0.0552864, 0.207391, 0.715033, -114.673, -27.6598, 6.24916)
+mesh = SubResource("PlaneMesh_awmu6")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(-0.333637, 0.626634, -0.165369, -0.723827, -0.291138, 0.0663092, -0.00985837, 0.168861, 0.728001, -175.421, -20.8995, 9.46899)
+mesh = SubResource("PlaneMesh_hbnge")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.107386, 0.589166, -0.116012, -0.547731, 0.107176, -0.0467116, -0.028578, 0.159696, 0.459354, -176.15, -22.8904, 9.44517)
+mesh = SubResource("PlaneMesh_x41ax")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(-0.00845336, 0.600149, -0.118603, -0.558384, -0.0152177, -0.0165574, -0.0222413, 0.153934, 0.460768, -176.928, -24.7879, 9.41136)
+mesh = SubResource("PlaneMesh_gyvwt")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(-0.00144231, 0.600213, -0.118625, -0.558429, -0.00780819, -0.0183822, -0.0226537, 0.154241, 0.460693, -178.86, -27.2305, 9.41363)
+mesh = SubResource("PlaneMesh_iocyy")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(0.208602, 0.557424, -0.108295, -0.517435, 0.214058, -0.0730646, -0.0332369, 0.166026, 0.457801, -178.727, -30.1456, 9.18115)
+mesh = SubResource("PlaneMesh_04wlk")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -518.978, 4.21956, -30.7857)
+light_color = Color(0.309804, 0.960784, 0.333333, 1)
+light_energy = 25.025
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ld1a7")
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.290412, -0.225788, 0.929882, 0.00848542, 0.972333, 0.233445, -0.956864, -0.059905, 0.284293, -518.719, 2.327, -29.266)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D"]
+transform = Transform3D(1.78891, 0, 0, 0, 9.72893, 0, 0, 0, 1.49678, 0, 32.3821, 0)
+amount = 10000
+speed_scale = 0.3
+randomness = 0.75
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_xtah7")
+draw_pass_1 = SubResource("RibbonTrailMesh_bhqqr")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+light_energy = 8.79
+
 [connection signal="body_entered" from="Area3D" to="player" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint2" to="player" method="_on_checkpoint_2_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint3" to="player" method="_on_checkpoint_3_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint4" to="player" method="_on_checkpoint_4_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint5" to="player" method="_on_checkpoint_5_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint6" to="player" method="_on_checkpoint_6_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint7" to="checkpoints/checkpoint7" method="_on_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint8" to="checkpoints/checkpoint8" method="_on_body_entered"]
