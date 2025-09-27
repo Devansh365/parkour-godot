@@ -268,7 +268,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_74jst")
 
 [node name="player" parent="." node_paths=PackedStringArray("checkpoint1", "checkpoint2", "checkpoint3", "checkpoint4", "checkpoint5", "checkpoint6") instance=ExtResource("1_r7f8b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -486.868, 4.49292, -3.99854)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54562, 4.49292, 0.84466)
 wall_min_slide_angle = 0.785398
 checkpoint1 = NodePath("../checkpoints/checkpoint 1")
 checkpoint2 = NodePath("../checkpoints/checkpoint2")
